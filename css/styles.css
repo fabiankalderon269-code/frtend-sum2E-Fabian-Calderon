@@ -9,30 +9,45 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:#0f1724;line-height:1.5}
 .container{max-width:var(--max-width);margin:0 auto;padding:24px}
-.site-header{background:#fff;border-bottom:1px solid #e6e9ee}
+.site-header{background:#fff;border-bottom:1px solid #e6e9ee;position:sticky;top:0;z-index:50}
 .header-row{display:flex;align-items:center;justify-content:space-between}
 .brand{margin:0;padding:18px 0;font-weight:700;color:var(--accent)}
 .main-nav a{margin-left:18px;color:var(--muted);text-decoration:none}
 .main-nav .btn{background:transparent;border:1px solid var(--accent);padding:8px 12px;border-radius:6px;color:var(--accent)}
 .hero{padding:48px 0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
 .hero-content{max-width:560px}
-.hero h2{font-size:28px;margin:0 0 10px}
-.hero p{color:var(--muted);margin:0 0 16px}
+.hero h2{font-size:32px;margin:0 0 16px;line-height:1.1}
+.hero p{color:var(--muted);margin:0 0 22px}
+.hero-image{min-height:300px;border-radius:22px;background:linear-gradient(135deg,#dbeefe,#f7f9fb);box-shadow:0 16px 40px rgba(43,138,219,.12)}
+.trust-indicators{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:14px;margin-top:24px}
+.trust-item{background:#f8fbff;padding:16px;border-radius:16px;box-shadow:0 1px 4px rgba(12,15,20,.05)}
+.trust-item strong{display:block;font-size:1.05rem;color:#0f1724}
+.trust-item p{margin:6px 0 0;color:var(--muted);font-size:.95rem}
 .btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none}
 .btn.primary{background:var(--accent);color:#fff}
 .btn{border:1px solid transparent}
 .servicios h3,.equipo h3,.obras h3{margin-top:6px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
+.section-description{color:var(--muted);max-width:720px;margin:10px 0 0}
+.cards, .servicios-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
+@media (min-width:960px){
+	.servicios-grid{grid-template-columns:repeat(3,minmax(220px,1fr));}
+}
 .card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 1px 4px rgba(12,15,20,.04)}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:12px}
-.member{background:var(--card);padding:14px;border-radius:8px;text-align:center}
+.team-grid{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px}
+.member{background:var(--card);padding:20px;border-radius:8px;flex:1 1 250px;min-width:230px;}
+.member p{margin:8px 0 0;color:var(--muted);line-height:1.6}
 .avatar{height:80px;width:80px;background:linear-gradient(135deg,#e0f2ff,#dfe7fa);border-radius:50%;margin:0 auto 10px}
-.obra-list{display:flex;gap:12px;flex-wrap:wrap;list-style:none;padding:0;margin:12px 0}
-.obra-list li{background:var(--card);padding:8px 12px;border-radius:8px}
+.obra-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;list-style:none;padding:0;margin:12px 0}
+.obra-list li{background:var(--card);padding:14px 14px 12px;border-radius:10px;box-shadow:0 1px 4px rgba(12,15,20,.04);font-weight:600}
+.obra-note{margin-top:10px;color:var(--muted)}
 .contacto p{margin:4px 0;color:var(--muted)}
 .site-footer{background:#fff;border-top:1px solid #e6e9ee;padding:16px}
 
 /* Responsive tweaks */
+@media (max-width:840px){
+	.hero-grid{grid-template-columns:1fr;}
+}
 @media (max-width:640px){
 	.header-row{flex-direction:column;align-items:flex-start}
 	.main-nav{margin-top:8px}

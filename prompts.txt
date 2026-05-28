@@ -2,4 +2,8 @@
 
 Prompt 1: Desarrolla un sitio web de u consultorio medico llamado SaludPlus, el contexto del negocio es que SaludPlus es un consultorio medico que ofrece atencion en distintas especialidades, la clinica busca modernizar su presencia digital con un sitio web que muestre sus servicios, el equipo medico y permita a los pacientes solicitar turnos en linea de manera sencilla y rapida, la pagina debe presentar la clinica de forma profesional, con informacion sobre sus especialidades medicas, el equipo de profesionales y las obras sociales aceptadas
 Respuesta: me dio la pagina principal con los servicios, el equipo y obras sociales y el formulario de turnos(fecha/hora, especialidad, profesional obra social) y validacion basica JS
-Resumen: copilot creo una version inicial de sitio SaludPlus y el formulario de turnos
+Resumen: copilot logro crear una version inicial de sitio SaludPlus y el formulario de turnos
+
+Prompt 2: manteniendo el codigo actual, el header quiero que el menu debe permanecer visible al hacer scroll, para la seccion hero quiero indicadores de confianza (al menos 3 destacados), las especialidades medicas grilla con al mneos 6 especialidades disponibles y un layout implementado con css grid (minimo 3 columnas en pantallas grandes), para la seccion nuestros medicos agregale una descripcion breve o frase y un layout con Flexbox, para las obras sociales una lista de al menos 6 obras sociales y/o prepagas aceptadas y una presentacion clara con nombre de cada cobertura y en la seccion de contacto agrefgale un horario de atencion
+Respuesta: Cambio el index.html para modificar alunas secciones y el styles.css para mejorar el estilo visual
+Resumen: Logro hacer los cambios sugeridos
