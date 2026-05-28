@@ -1,10 +1,16 @@
 /* Styles specific to the turnos form */
-.turno-form{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(12,15,20,.06)}
-.turno-form .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.turno-form{background:#fff;padding:24px;border-radius:8px;box-shadow:0 2px 8px rgba(12,15,20,.06)}
+.turno-form fieldset{border:1px solid #e6e9ee;border-radius:12px;padding:20px;margin-top:20px}
+.turno-form legend{font-weight:700;padding:0 10px;color:#0f1724}
+.turno-form .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .turno-form label{display:flex;flex-direction:column;font-size:14px;color:var(--muted)}
-.turno-form input,.turno-form select,.turno-form textarea{margin-top:6px;padding:10px;border:1px solid #e6e9ee;border-radius:6px}
+.turno-form input,.turno-form select,.turno-form textarea{margin-top:8px;padding:12px;border:1px solid #e6e9ee;border-radius:8px;font-family:inherit}
+.turno-form textarea{resize:vertical}
 .turno-form .full{grid-column:1/-1}
-.actions{margin-top:16px;display:flex;gap:12px;align-items:center}
+.checkbox-field{flex-direction:row;align-items:center;gap:10px}
+.checkbox-field input{margin:0}
+.hidden{display:none}
+.actions{margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 #mensaje{margin-top:12px;color:green}
 
 @media (max-width:800px){

@@ -23,74 +23,160 @@
 		<p class="lead">Completa el formulario y nuestro equipo te confirmará el turno a la brevedad.</p>
 
 		<form id="turnoForm" class="turno-form" novalidate>
-			<div class="grid">
-				<label>
-					Nombre
-					<input type="text" name="nombre" id="nombre" required>
-				</label>
-				<label>
-					Apellido
-					<input type="text" name="apellido" id="apellido" required>
-				</label>
-				<label>
-					DNI
-					<input type="text" name="dni" id="dni" inputmode="numeric" required>
-				</label>
-				<label>
-					Email
-					<input type="email" name="email" id="email" required>
-				</label>
-				<label>
-					Teléfono
-					<input type="tel" name="telefono" id="telefono">
-				</label>
-				<label>
-					Especialidad
-					<select name="especialidad" id="especialidad" required>
-						<option value="">-- Seleccionar --</option>
-						<option>Medicina General</option>
-						<option>Pediatría</option>
-						<option>Ginecología</option>
-						<option>Cardiología</option>
-					</select>
-				</label>
-				<label>
-					Profesional
-					<select name="profesional" id="profesional" required>
-						<option value="">-- Seleccionar --</option>
-						<option>Dra. Ana Pérez</option>
-						<option>Dr. Martín Gómez</option>
-						<option>Dra. Laura Ruiz</option>
-						<option>Dra. Sofía López</option>
-					</select>
-				</label>
-				<label>
-					Fecha
-					<input type="date" name="fecha" id="fecha" required>
-				</label>
-				<label>
-					Hora
-					<input type="time" name="hora" id="hora" required>
-				</label>
-				<label>
-					Obra Social
-					<select name="obra" id="obra" required>
-						<option value="">-- Seleccionar --</option>
-						<option>Obra Social Nacional</option>
-						<option>PlusSalud</option>
-						<option>Federada</option>
-						<option>Particular</option>
-					</select>
-				</label>
-				<label class="full">
-					Comentario
-					<textarea name="comentario" id="comentario" rows="4" placeholder="Motivo de la consulta (opcional)"></textarea>
-				</label>
-			</div>
+			<fieldset>
+				<legend>Datos del Paciente</legend>
+				<div class="grid">
+					<label>
+						Nombre
+						<input type="text" name="nombre" id="nombre" required>
+					</label>
+					<label>
+						Apellido
+						<input type="text" name="apellido" id="apellido" required>
+					</label>
+					<label>
+						DNI
+						<input type="text" name="dni" id="dni" inputmode="numeric" required>
+					</label>
+					<label>
+						Correo
+						<input type="email" name="email" id="email" required>
+					</label>
+					<label>
+						Teléfono
+						<input type="tel" name="telefono" id="telefono">
+					</label>
+					<label>
+						Fecha de nacimiento
+						<input type="date" name="nacimiento" id="nacimiento" required>
+					</label>
+					<label>
+						Género
+						<select name="genero" id="genero" required>
+							<option value="">-- Seleccionar --</option>
+							<option>Femenino</option>
+							<option>Masculino</option>
+							<option>Otro</option>
+						</select>
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Datos del Turno</legend>
+				<div class="grid">
+					<label>
+						Especialidad
+						<select name="especialidad" id="especialidad" required>
+							<option value="">-- Seleccionar --</option>
+							<option>Medicina General</option>
+							<option>Cardiología</option>
+							<option>Ginecología</option>
+							<option>Traumatología</option>
+						</select>
+					</label>
+					<label>
+						Médico
+						<select name="profesional" id="profesional" disabled required>
+							<option value="">-- Seleccionar especialidad primero --</option>
+						</select>
+					</label>
+					<label>
+						Tipo de consulta
+						<select name="tipoConsulta" id="tipoConsulta" required>
+							<option value="">-- Seleccionar --</option>
+							<option>Primera consulta</option>
+							<option>Control</option>
+							<option>Resultado de estudios</option>
+						</select>
+					</label>
+					<label>
+						Fecha del turno
+						<input type="date" name="fecha" id="fecha" required>
+					</label>
+					<label>
+						Horario del turno
+						<input type="time" name="hora" id="hora" required>
+					</label>
+					<label>
+						Modalidad
+						<select name="modalidad" id="modalidad" required>
+							<option value="">-- Seleccionar --</option>
+							<option value="Presencial">Presencial</option>
+							<option value="Videoconsulta">Videoconsulta</option>
+						</select>
+					</label>
+					<label id="plataformaWrapper" class="full hidden">
+						Plataforma preferida
+						<select name="plataforma" id="plataforma">
+							<option value="">-- Seleccionar --</option>
+							<option>Zoom</option>
+							<option>Google Meet</option>
+							<option>Teams</option>
+						</select>
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Cobertura Médica</legend>
+				<div class="grid">
+					<label>
+						Cobertura
+						<select name="cobertura" id="cobertura" required>
+							<option value="">-- Seleccionar --</option>
+							<option>OSDE</option>
+							<option>Galeno</option>
+							<option>Medicus</option>
+							<option>Particular</option>
+						</select>
+					</label>
+					<label id="credencialWrapper" class="hidden">
+						Número de credencial
+						<input type="text" name="credencial" id="credencial">
+					</label>
+					<label id="planWrapper" class="hidden">
+						Plan
+						<input type="text" name="plan" id="plan">
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Información Adicional</legend>
+				<div class="grid">
+					<label class="full checkbox-field">
+						<input type="checkbox" name="primeraVisita" id="primeraVisita">
+						Primera visita
+					</label>
+					<label id="conocioWrapper" class="full hidden">
+						¿Cómo nos conoció?
+						<select name="conocio" id="conocio">
+							<option value="">-- Seleccionar --</option>
+							<option>Búsqueda en internet</option>
+							<option>Recomendación de un conocido</option>
+							<option>Redes sociales</option>
+							<option>Otro</option>
+						</select>
+					</label>
+					<label class="full">
+						Motivo de consulta
+						<textarea name="motivo" id="motivo" rows="4" required></textarea>
+					</label>
+					<label class="full checkbox-field">
+						<input type="checkbox" name="estudiosPrevios" id="estudiosPrevios">
+						Estudios previos
+					</label>
+					<label id="descripcionEstudiosWrapper" class="full hidden">
+						Descripción de estudios
+						<textarea name="descripcionEstudios" id="descripcionEstudios" rows="3"></textarea>
+					</label>
+				</div>
+			</fieldset>
 
 			<div class="actions">
 				<button type="submit" class="btn primary">Solicitar Turno</button>
-				<a class="btn" href="index.html">Volver</a>
+				<button type="reset" class="btn">Limpiar formulario</button>
 			</div>
 			<div id="mensaje" role="status" aria-live="polite"></div>
 		</form>
