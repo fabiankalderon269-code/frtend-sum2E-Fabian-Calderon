@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Solicitar Turno - SaludPlus</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/turnos.css">
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-row">
+			<h1 class="brand">SaludPlus</h1>
+			<nav class="main-nav">
+				<a href="index.html">Inicio</a>
+				<a href="turnos.html">Turnos</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<h2>Solicitar Turno</h2>
+		<p class="lead">Completa el formulario y nuestro equipo te confirmará el turno a la brevedad.</p>
+
+		<form id="turnoForm" class="turno-form" novalidate>
+			<div class="grid">
+				<label>
+					Nombre
+					<input type="text" name="nombre" id="nombre" required>
+				</label>
+				<label>
+					Apellido
+					<input type="text" name="apellido" id="apellido" required>
+				</label>
+				<label>
+					DNI
+					<input type="text" name="dni" id="dni" inputmode="numeric" required>
+				</label>
+				<label>
+					Email
+					<input type="email" name="email" id="email" required>
+				</label>
+				<label>
+					Teléfono
+					<input type="tel" name="telefono" id="telefono">
+				</label>
+				<label>
+					Especialidad
+					<select name="especialidad" id="especialidad" required>
+						<option value="">-- Seleccionar --</option>
+						<option>Medicina General</option>
+						<option>Pediatría</option>
+						<option>Ginecología</option>
+						<option>Cardiología</option>
+					</select>
+				</label>
+				<label>
+					Profesional
+					<select name="profesional" id="profesional" required>
+						<option value="">-- Seleccionar --</option>
+						<option>Dra. Ana Pérez</option>
+						<option>Dr. Martín Gómez</option>
+						<option>Dra. Laura Ruiz</option>
+						<option>Dra. Sofía López</option>
+					</select>
+				</label>
+				<label>
+					Fecha
+					<input type="date" name="fecha" id="fecha" required>
+				</label>
+				<label>
+					Hora
+					<input type="time" name="hora" id="hora" required>
+				</label>
+				<label>
+					Obra Social
+					<select name="obra" id="obra" required>
+						<option value="">-- Seleccionar --</option>
+						<option>Obra Social Nacional</option>
+						<option>PlusSalud</option>
+						<option>Federada</option>
+						<option>Particular</option>
+					</select>
+				</label>
+				<label class="full">
+					Comentario
+					<textarea name="comentario" id="comentario" rows="4" placeholder="Motivo de la consulta (opcional)"></textarea>
+				</label>
+			</div>
+
+			<div class="actions">
+				<button type="submit" class="btn primary">Solicitar Turno</button>
+				<a class="btn" href="index.html">Volver</a>
+			</div>
+			<div id="mensaje" role="status" aria-live="polite"></div>
+		</form>
+	</main>
+
+	<script src="js/validaciones.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,5 @@
+-Etapa 1: Sitio Web Informativo
+
+Prompt 1: Desarrolla un sitio web de u consultorio medico llamado SaludPlus, el contexto del negocio es que SaludPlus es un consultorio medico que ofrece atencion en distintas especialidades, la clinica busca modernizar su presencia digital con un sitio web que muestre sus servicios, el equipo medico y permita a los pacientes solicitar turnos en linea de manera sencilla y rapida, la pagina debe presentar la clinica de forma profesional, con informacion sobre sus especialidades medicas, el equipo de profesionales y las obras sociales aceptadas
+Respuesta: me dio la pagina principal con los servicios, el equipo y obras sociales y el formulario de turnos(fecha/hora, especialidad, profesional obra social) y validacion basica JS
+Resumen: copilot creo una version inicial de sitio SaludPlus y el formulario de turnos

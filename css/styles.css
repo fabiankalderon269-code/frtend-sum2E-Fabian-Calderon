@@ -1,0 +1,41 @@
+:root{
+	--bg:#f7f9fb;
+	--card:#ffffff;
+	--accent:#2b8adb;
+	--muted:#6b7280;
+	--max-width:1100px;
+	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#0f1724;line-height:1.5}
+.container{max-width:var(--max-width);margin:0 auto;padding:24px}
+.site-header{background:#fff;border-bottom:1px solid #e6e9ee}
+.header-row{display:flex;align-items:center;justify-content:space-between}
+.brand{margin:0;padding:18px 0;font-weight:700;color:var(--accent)}
+.main-nav a{margin-left:18px;color:var(--muted);text-decoration:none}
+.main-nav .btn{background:transparent;border:1px solid var(--accent);padding:8px 12px;border-radius:6px;color:var(--accent)}
+.hero{padding:48px 0}
+.hero-content{max-width:560px}
+.hero h2{font-size:28px;margin:0 0 10px}
+.hero p{color:var(--muted);margin:0 0 16px}
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none}
+.btn.primary{background:var(--accent);color:#fff}
+.btn{border:1px solid transparent}
+.servicios h3,.equipo h3,.obras h3{margin-top:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
+.card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 1px 4px rgba(12,15,20,.04)}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:12px}
+.member{background:var(--card);padding:14px;border-radius:8px;text-align:center}
+.avatar{height:80px;width:80px;background:linear-gradient(135deg,#e0f2ff,#dfe7fa);border-radius:50%;margin:0 auto 10px}
+.obra-list{display:flex;gap:12px;flex-wrap:wrap;list-style:none;padding:0;margin:12px 0}
+.obra-list li{background:var(--card);padding:8px 12px;border-radius:8px}
+.contacto p{margin:4px 0;color:var(--muted)}
+.site-footer{background:#fff;border-top:1px solid #e6e9ee;padding:16px}
+
+/* Responsive tweaks */
+@media (max-width:640px){
+	.header-row{flex-direction:column;align-items:flex-start}
+	.main-nav{margin-top:8px}
+	.hero{padding:28px 0}
+}
+

@@ -1,0 +1,13 @@
+/* Styles specific to the turnos form */
+.turno-form{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(12,15,20,.06)}
+.turno-form .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.turno-form label{display:flex;flex-direction:column;font-size:14px;color:var(--muted)}
+.turno-form input,.turno-form select,.turno-form textarea{margin-top:6px;padding:10px;border:1px solid #e6e9ee;border-radius:6px}
+.turno-form .full{grid-column:1/-1}
+.actions{margin-top:16px;display:flex;gap:12px;align-items:center}
+#mensaje{margin-top:12px;color:green}
+
+@media (max-width:800px){
+	.turno-form .grid{grid-template-columns:1fr}
+}
+
