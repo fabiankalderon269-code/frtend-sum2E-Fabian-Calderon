@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			Array.from(element.querySelectorAll('input, select, textarea')).forEach(el => {
 				el.disabled = true;
 				if(el.tagName === 'SELECT' || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = '';
+				el.classList.remove('campo-ok', 'campo-error');
 			});
 		}
 	}
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		profesional.innerHTML = '';
 		profesional.disabled = true;
 		profesional.appendChild(new Option('-- Seleccionar especialidad primero --', '', true, true));
+		profesional.classList.remove('campo-ok', 'campo-error');
 	}
 
 	function actualizarProfesional(){
@@ -59,20 +61,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	function actualizarModalidad(){
 		setVisibility(plataformaWrapper, modalidad.value === 'Videoconsulta');
+		if(modalidad.value !== 'Videoconsulta') plataforma.classList.remove('campo-ok', 'campo-error');
 	}
 
 	function actualizarCobertura(){
 		const mostrar = cobertura.value && cobertura.value !== 'Particular';
 		setVisibility(credencialWrapper, mostrar);
 		setVisibility(planWrapper, mostrar);
+		if(cobertura.value === 'Particular'){
+			form.credencial.classList.remove('campo-ok', 'campo-error');
+			form.plan.classList.remove('campo-ok', 'campo-error');
+		}
 	}
 
 	function actualizarPrimeraVisita(){
 		setVisibility(conocioWrapper, primeraVisita.checked);
+		if(!primeraVisita.checked) conocio.classList.remove('campo-ok', 'campo-error');
 	}
 
 	function actualizarEstudiosPrevios(){
 		setVisibility(descripcionEstudiosWrapper, estudiosPrevios.checked);
+		if(!estudiosPrevios.checked) descripcionEstudios.classList.remove('campo-ok', 'campo-error');
 	}
 
 	function validarFechaNacimiento(fechaNacimiento){
@@ -97,6 +106,15 @@ document.addEventListener('DOMContentLoaded', function(){
 		return /^[0-9]{6,12}$/.test(dni.trim());
 	}
 
+	function marcarCampo(campo, ok){
+		campo.classList.remove('campo-ok', 'campo-error');
+		if(ok){
+			campo.classList.add('campo-ok');
+		}else{
+			campo.classList.add('campo-error');
+		}
+	}
+
 	function limpiarYDeshabilitar(){
 		setVisibility(plataformaWrapper, false);
 		setVisibility(credencialWrapper, false);
@@ -104,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		setVisibility(conocioWrapper, false);
 		setVisibility(descripcionEstudiosWrapper, false);
 		resetProfesional();
+		Array.from(form.querySelectorAll('input, select, textarea')).forEach(campo => campo.classList.remove('campo-ok', 'campo-error'));
 	}
 
 	especialidad.addEventListener('change', actualizarProfesional);
@@ -125,9 +144,85 @@ document.addEventListener('DOMContentLoaded', function(){
 		actualizarPrimeraVisita();
 		actualizarEstudiosPrevios();
 
-		let valido = true;
-		const errores = [];
+		const campos = [
+			form.nombre,
+			form.apellido,
+			form.dni,
+			form.email,
+			form.telefono,
+			form.nacimiento,
+			form.genero,
+			form.especialidad,
+			form.profesional,
+			form.tipoConsulta,
+			form.fecha,
+			form.hora,
+			form.modalidad,
+			form.plataforma,
+			form.cobertura,
+			form.credencial,
+			form.plan,
+			primeraVisita,
+			conocio,
+			estudiosPrevios,
+			descripcionEstudios,
+			form.motivo
+		];
 
+		let errores = [];
+		let primerCampoInvalido = null;
+
+		const validarCampo = (campo, valido) => {
+			if(campo.disabled) return;
+			if(valido){
+				marcarCampo(campo, true);
+			}else{
+				marcarCampo(campo, false);
+				if(!primerCampoInvalido) primerCampoInvalido = campo;
+			}
+		};
+
+		validarCampo(form.nombre, !!form.nombre.value.trim());
+		validarCampo(form.apellido, !!form.apellido.value.trim());
+		validarCampo(form.dni, validarDNI(form.dni.value));
+		validarCampo(form.email, form.email.checkValidity());
+		validarCampo(form.telefono, validarTelefono(form.telefono.value));
+		validarCampo(form.nacimiento, validarFechaNacimiento(form.nacimiento.value));
+		validarCampo(form.genero, !!form.genero.value);
+		validarCampo(form.especialidad, !!form.especialidad.value);
+		validarCampo(form.profesional, !!form.profesional.value);
+		validarCampo(form.tipoConsulta, !!form.tipoConsulta.value);
+		validarCampo(form.fecha, !!form.fecha.value);
+		validarCampo(form.hora, !!form.hora.value);
+		validarCampo(form.modalidad, !!form.modalidad.value);
+		validarCampo(form.cobertura, !!form.cobertura.value);
+		validarCampo(form.motivo, !!form.motivo.value.trim());
+
+		if(form.modalidad.value === 'Videoconsulta'){
+			validarCampo(plataforma, !!plataforma.value);
+		}
+
+		if(form.cobertura.value && form.cobertura.value !== 'Particular'){
+			validarCampo(form.credencial, !!form.credencial.value.trim());
+			validarCampo(form.plan, !!form.plan.value.trim());
+		}
+
+		if(primeraVisita.checked){
+			validarCampo(conocio, !!conocio.value);
+		}
+
+		if(estudiosPrevios.checked){
+			validarCampo(descripcionEstudios, !!descripcionEstudios.value.trim());
+		}
+
+		if(form.fecha.value && form.hora.value){
+			const fechaHoraValida = validarFechaHora(form.fecha.value, form.hora.value);
+			validarCampo(form.fecha, fechaHoraValida);
+			validarCampo(form.hora, fechaHoraValida);
+			if(!fechaHoraValida) errores.push('La fecha y hora del turno deben ser futuras.');
+		}
+
+		errores = [];
 		if(!form.nombre.value.trim()) errores.push('Completa el nombre.');
 		if(!form.apellido.value.trim()) errores.push('Completa el apellido.');
 		if(!validarDNI(form.dni.value)) errores.push('Ingresa un DNI válido (solo números).');
@@ -141,27 +236,35 @@ document.addEventListener('DOMContentLoaded', function(){
 		if(!form.fecha.value) errores.push('Selecciona la fecha del turno.');
 		if(!form.hora.value) errores.push('Selecciona el horario del turno.');
 		if(!form.modalidad.value) errores.push('Selecciona la modalidad de la consulta.');
-		if(!form.cobertura.value) errores.push('Selecciona una cobertura.');
-		if(!form.motivo.value.trim()) errores.push('Describe el motivo de consulta.');
-
 		if(form.modalidad.value === 'Videoconsulta' && !plataforma.value) errores.push('Selecciona la plataforma preferida para videoconsulta.');
+		if(!form.cobertura.value) errores.push('Selecciona una cobertura.');
 		if(form.cobertura.value && form.cobertura.value !== 'Particular'){
 			if(!form.credencial.value.trim()) errores.push('Ingresa el número de credencial.');
 			if(!form.plan.value.trim()) errores.push('Ingresa el plan.');
 		}
+		if(!form.motivo.value.trim()) errores.push('Describe el motivo de consulta.');
 		if(primeraVisita.checked && !conocio.value) errores.push('Selecciona cómo nos conoció.');
 		if(estudiosPrevios.checked && !descripcionEstudios.value.trim()) errores.push('Describe los estudios previos.');
 		if(form.fecha.value && form.hora.value && !validarFechaHora(form.fecha.value, form.hora.value)) errores.push('La fecha y hora del turno deben ser futuras.');
 
 		if(errores.length){
+			if(primerCampoInvalido){
+				primerCampoInvalido.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
 			mensaje.style.color = 'crimson';
 			mensaje.innerHTML = errores.map(error => `• ${error}`).join('<br>');
 			return;
 		}
 
+		const turnoId = `TURN-${String(Math.floor(Math.random() * 90000) + 10000).padStart(5, '0')}`;
 		mensaje.style.color = 'green';
-		mensaje.textContent = 'Solicitud de turno enviada. Recibirá confirmación por email.';
+		mensaje.innerHTML = `Turno confirmado: <strong>${turnoId}</strong><br>
+			Paciente: <strong>${form.nombre.value.trim()} ${form.apellido.value.trim()}</strong><br>
+			Especialidad: <strong>${especialidad.options[especialidad.selectedIndex].text}</strong><br>
+			Fecha: <strong>${form.fecha.value}</strong><br>
+			Hora: <strong>${form.hora.value}</strong>`;
 		form.reset();
+		limpiarYDeshabilitar();
 	});
 
 	limpiarYDeshabilitar();

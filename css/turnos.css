@@ -4,12 +4,14 @@
 .turno-form legend{font-weight:700;padding:0 10px;color:#0f1724}
 .turno-form .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .turno-form label{display:flex;flex-direction:column;font-size:14px;color:var(--muted)}
-.turno-form input,.turno-form select,.turno-form textarea{margin-top:8px;padding:12px;border:1px solid #e6e9ee;border-radius:8px;font-family:inherit}
-.turno-form textarea{resize:vertical}
-.turno-form .full{grid-column:1/-1}
-.checkbox-field{flex-direction:row;align-items:center;gap:10px}
-.checkbox-field input{margin:0}
-.hidden{display:none}
+.turno-form input,.turno-form select,.turno-form textarea{margin-top:8px;padding:12px;border:1px solid #e6e9ee;border-radius:8px;font-family:inherit;transition:border-color .2s,background .2s}
+	.turno-form textarea{resize:vertical}
+	.turno-form .full{grid-column:1/-1}
+	.checkbox-field{flex-direction:row;align-items:center;gap:10px}
+	.checkbox-field input{margin:0}
+	.hidden{display:none}
+	.campo-error{border-color:#e11d48!important;background:#fee2e2}
+	.campo-ok{border-color:#10b981!important;background:#ecfdf5}
 .actions{margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 #mensaje{margin-top:12px;color:green}
 
